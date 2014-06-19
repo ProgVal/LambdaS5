@@ -143,9 +143,11 @@ module S5 = struct
 
   let load_desugared cmd path =
     let js_src = string_of_file path in
+    SpiderMonkey.file_path_hint := path;
     try push_ljs (Ljs_desugar.parse_and_desugar !jsparser_path js_src)
     with Ljs_values.PrimErr (t, v) -> print_string
       ("Error while desugaring: " ^ Ljs_values.pretty_value v ^ "\n")
+    SpiderMonkey.file_path_hint := "<unknown>";
 
   let load_js cmd path =
     push_js (SpiderMonkey.parse_spidermonkey (open_in path) path)

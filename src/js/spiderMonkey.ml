@@ -4,12 +4,14 @@ open Json_type
 open Js_syntax
 open Printf
 
+let file_path_hint = ref ""
+
 let mk_pos (v : json_type) : Pos.t = 
   let jstart = get "start" v in
   let jend = get "end" v in
   let fname = match (try_get "source" v) with
   | Some (Json_type.String s) -> s
-  | _ -> "<unknown>" in
+  | _ -> ("<unknown (maybe " ^ !file_path_hint ^ ")>") in
   let json_pos_to_prelude_pos pos = {
     Lexing.pos_fname = fname;
     Lexing.pos_lnum = int_of_float (float (get "line" pos));
