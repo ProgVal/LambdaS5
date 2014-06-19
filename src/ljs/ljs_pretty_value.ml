@@ -36,7 +36,7 @@ and pretty_obj store (avs, props) =
                               (map (fun p -> pretty_prop p store) proplist))])
 
 and pretty_attrsv ({ proto = p; code = c; extensible = b; klass = k; primval = pv } : attrsv) store =
-  let proto = [horz [text "#proto:"; pretty_value p]] in
+  let proto = [horz [text "#proto:"; match p with ObjLoc loc -> pretty_obj store (get_obj store loc) | _ -> pretty_value p]] in
   let primval = match pv with None -> []
     | Some v -> [horz [text "#prim:"; pretty_value v]] in
   let code = match c with None -> [] 
