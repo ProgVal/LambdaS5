@@ -2,15 +2,6 @@
 open Prelude
 open Ljs_syntax
 
-(* Macros for expanding arguments objects and function objects (a
-little bit of desugaring)*)
-
-let rec mk_val p v =
-  Data ({ value = v; writable = true }, true, true)
-
-let rec mk_field (p, s, e) =
-  (p, s, mk_val p e)
-
 let with_pos exp pos = match exp with
   | Null _ -> Null pos
   | Undefined _ -> Undefined pos
