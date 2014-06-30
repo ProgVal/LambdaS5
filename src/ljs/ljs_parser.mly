@@ -2,16 +2,6 @@
 open Prelude
 open Ljs_syntax
 
-let true_c p = True p
-let false_c p = False p
-
-let undef_c p = Undefined p
-
-let str p s = String (p, s)
-
-let num_c p d = Num (p, d)
-let int_c p d = Num (p, float_of_int d)
-
 (* Macros for expanding arguments objects and function objects (a
 little bit of desugaring)*)
 
