@@ -1,3 +1,1 @@
-"analyses/cfg/cfg.ml": package(ocamlgraph)
-"analyses/cfg/cfg_abs.ml": package(ocamlgraph)
-"analyses/cps/ljs_cps_util.ml": package(ocamlgraph)
+true: package(ocamlgraph)
